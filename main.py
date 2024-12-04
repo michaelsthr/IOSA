@@ -6,5 +6,5 @@ if __name__ == "__main__":
     print("Made by: Matthi, Samu, Michi")
     print("=" * 40)
 
-    fcfs.schdule()
+    fcfs.schedule()
     

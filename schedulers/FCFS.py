@@ -6,5 +6,5 @@ fcfs_list = [Process(exec_time=22),
                 Process(exec_time=5), 
                 Process(exec_time=8)]
 
-def schdule():
+def schedule():
     print("Starting fcfs")
