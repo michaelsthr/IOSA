@@ -5,6 +5,7 @@ class Process:
         self.deadline = deadline
         self.start_time = start_time
         self.complet_time = complet_time
-    
-    def print_all(self):
-        print(self.ready_time, self.exec_time, self.deadline, self.start_time, self.complet_time)
+
+
+    def __str__(self):
+        return f"{self.ready_time}, {self.exec_time}, {self.deadline}, {self.start_time}, {self.complet_time}"
