@@ -11,13 +11,22 @@ def Schedule() -> float:
     for idx in range(len(edf_list)):
         print('  Execution time process', (idx+1), ':', edf_list[idx].exec_time)
     
-    exe_time = 0
-    added_waiting_time = 0
-
+    added_exe_time = 0
+    is_even_processes = (len(edf_list)/2 == 0)
     for i in edf_list:
-        if ((i == edf_list[0]) or (i == edf_list[1])):
-            exe_time += i.exec_time
-        if (i == edf_list[-1]):
-            avg_waiting_time = added_waiting_time / len(edf_list)
-
-    return avg_waiting_time
+        # if ((i == edf_list[0]) or (i == edf_list[1])):
+        #     added_exe_time += i.exec_time
+        # if (i == edf_list[-1]):
+        #     avg_waiting_time = added_exe_time / len(edf_list)
+        if is_even_processes:
+            if (i != edf_list[-2]):
+                added_exe_time += i.exec_time
+            else:
+                avg_waiting_time = added_exe_time / len(edf_list)
+                return avg_waiting_time
+        else:
+            if (i != edf_list[-1]):
+                added_exe_time += i.exec_time
+            else:
+                avg_waiting_time = added_exe_time / len(edf_list)
+                return avg_waiting_time
