@@ -9,7 +9,7 @@ fcfs_list = [Process(exec_time=22),
 def schedule() -> float:
     # The output will be like this:
 
-    # First Come First Serf:
+    # First Come First Serve:
 
     # Processes:
     # Execution-Times:
@@ -27,7 +27,7 @@ def schedule() -> float:
     # Average waiting time: 29.0
 
 
-    print('First Come First Serf:\n')
+    print('First Come First Serve:\n')
     print('Processes:\nExecution-Times:')
 
     # print the details of the input processes
