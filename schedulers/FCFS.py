@@ -1,10 +1,10 @@
-from process import Process
+from process import FCFS_Process
 
-fcfs_list = [Process(exec_time=22),
-                Process(exec_time=2), 
-                Process(exec_time=3), 
-                Process(exec_time=5), 
-                Process(exec_time=8)]
+fcfs_list = [   FCFS_Process(exec_time=22),
+                FCFS_Process(exec_time=2), 
+                FCFS_Process(exec_time=3), 
+                FCFS_Process(exec_time=5), 
+                FCFS_Process(exec_time=8)]
 
 def schedule() -> float:
     # The output will be like this:
