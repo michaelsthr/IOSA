@@ -1,4 +1,5 @@
 import schedulers.fcfs as fcfs
+import schedulers.llf as llf
 
 if __name__ == "__main__":
     print("=" * 40)
@@ -6,5 +7,5 @@ if __name__ == "__main__":
     print("Made by: Matthi, Samu, Michi")
     print("=" * 40)
  
-    fcfs.schedule()
+    llf.schedule()
     
