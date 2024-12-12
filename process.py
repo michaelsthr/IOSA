@@ -21,8 +21,11 @@ class EDF_Process(Process):
         pass
 
 class LLF_Process(Process):
-    def __init__(self, ready_time, exec_time, deadline, name=None):
-        pass
+    def __init__(self, ready_time, exec_time, deadline, laxity, name=None):
+        self.calc_laxity()
+
+    def calc_laxity(self):
+        self.laxity = (self.deadline - self.ready_time) - self.exec_time
 
 class SJF_Process(Process):
     pass
