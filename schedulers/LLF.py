@@ -20,12 +20,33 @@ def schedule() -> float:
 
 
     calc_laxity()
+    sorted_after_lax = sorted(llf_list, key=lambda x: x.laxity, reverse=False)
     print('Least Laxity First:\n')
-    print('Processes:\n')
+    print('Processes:')
 
-    # print the details of the input processes
-    # for idx in range(len(llf_list)):
-    #     print('Process', idx, ':', llf_list[idx].print_all())
+    for process in llf_list:
+        print(process)
+
+    print("After laxity sorted Processes:")
+
+    for process in sorted_after_lax:
+        print(process)
+
+     # calculate the combined relativ waiting time for each process
+    ave_waiting_time = 0
+    added_waiting_time = 0
+    rel_waiting_time = 0
+    for i in sorted_after_lax:
+        rel_waiting_time += i.exec_time
+        added_waiting_time += rel_waiting_time
+        print('+', rel_waiting_time)
+        
+    # calculate and print the average waiting time
+    print(added_waiting_time, ' / ', len(sorted_after_lax))
+    ave_waiting_time = added_waiting_time / len(sorted_after_lax)
+    print('Average waiting time:', ave_waiting_time)
+    print('='*40)
+    return ave_waiting_time
 
 def calc_laxity():
     for idx in range(len(llf_list)):

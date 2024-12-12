@@ -39,7 +39,7 @@ def schedule() -> float:
     added_waiting_time = 0
     rel_waiting_time = 0
     for i in fcfs_list:
-        rel_waiting_time = rel_waiting_time + i.exec_time
+        rel_waiting_time += i.exec_time
         added_waiting_time += rel_waiting_time
         print('+', rel_waiting_time)
         
