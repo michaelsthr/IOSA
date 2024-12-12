@@ -1,8 +1,8 @@
-from process import Process
+from process import EDF_Process
 
-edf_list = [Process(deadline=9, exec_time=4),
-             Process(deadline=9, exec_time=5),
-             Process(deadline=10, exec_time=8)]
+edf_list = [EDF_Process(deadline=9, exec_time=4),
+            EDF_Process(deadline=9, exec_time=5),
+            EDF_Process(deadline=10, exec_time=8)]
 
 
 def schedule() -> float:
