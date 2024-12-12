@@ -1,17 +1,16 @@
 from process import Process
 
-raw_edf_list = [Process(deadline=9, exec_time=4),
+edf_list = [Process(deadline=9, exec_time=4),
              Process(deadline=9, exec_time=5),
              Process(deadline=10, exec_time=8)]
 
 
 def schedule() -> float:
-    print('First Come First Serf:\n')
-    print('Processes:\nExecution-Times:')
+    print('Earliest Deadline First:\n')
 
     # sorted list only by deadlines, not by execution times
-    edf_list = raw_edf_list.sort(key=lambda process: process.deadline)
-    
+    edf_list.sort(key=lambda process: process.deadline)
+
     for idx in range(len(edf_list)):
         print('  Execution time process', (idx+1), ':', edf_list[idx].exec_time)
 
