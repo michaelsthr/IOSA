@@ -1,5 +1,7 @@
 import schedulers.fcfs as fcfs
+import schedulers.sjf as sjf
 import schedulers.llf as llf
+
 
 if __name__ == "__main__":
     print("=" * 40)
