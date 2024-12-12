@@ -8,6 +8,5 @@ if __name__ == "__main__":
     print("Welcome to IOSA - Implementation Of Scheduling Algorithms")
     print("Made by: Matthi, Samu, Michi")
     print("=" * 40)
-    fcfs.schedule()
-    sjf.schedule()
+    llf.schedule()
     

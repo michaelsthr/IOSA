@@ -1,6 +1,6 @@
 from process import Process
 
-llf_list = [Process(ready_time=0, deadline=10, exec_time=8),
+processes = [Process(ready_time=0, deadline=10, exec_time=8),
                 Process(ready_time=0, deadline=9, exec_time=5), 
                 Process(ready_time=0, deadline=9, exec_time=4)]
 
@@ -20,11 +20,12 @@ def schedule() -> float:
 
 
     calc_laxity()
-    sorted_after_lax = sorted(llf_list, key=lambda x: x.laxity, reverse=False)
+    # sort the list after laxity
+    sorted_after_lax = sorted(processes, key=lambda p: p.laxity, reverse=False)
     print('Least Laxity First:\n')
     print('Processes:')
 
-    for process in llf_list:
+    for process in processes:
         print(process)
 
     print("After laxity sorted Processes:")
@@ -49,5 +50,5 @@ def schedule() -> float:
     return ave_waiting_time
 
 def calc_laxity():
-    for idx in range(len(llf_list)):
-        llf_list[idx].laxity = (llf_list[idx].deadline - llf_list[idx].ready_time) - llf_list[idx].exec_time
+    for idx in range(len(processes)):
+        processes[idx].laxity = (processes[idx].deadline - processes[idx].ready_time) - processes[idx].exec_time
