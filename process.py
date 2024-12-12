@@ -1,5 +1,5 @@
 class Process:
-    def __init__(self,name=None, ready_time=None, exec_time=None, deadline=None, start_time=None, complet_time=None):
+    def __init__(self,name=None, ready_time=None, exec_time=None, deadline=None, start_time=None, complet_time=None, laxity=None):
         self.name = name
         self.ready_time = ready_time
         self.exec_time = exec_time
