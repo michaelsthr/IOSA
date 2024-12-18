@@ -5,6 +5,10 @@ class Process:
         self.start_time = start_time
         self.complet_time = complet_time
 
+    def get_attribute(self, attr_name: str):
+        """Returns the value of the specified attribute."""
+        return getattr(self, attr_name, None)
+
     def __str__(self):
         """Returns a string of the object's attributes with non-None values."""
         return "".join(f"{key}: {value}\n"
