@@ -10,7 +10,7 @@ p5 = Process(name="p5", exec_time=8)
 processes = [p1, p2, p3, p4, p5]
 
 
-def schedule():
+def schedule(processes):
     print("Shortest Job First:\n")
     
     sorted_list = sorted(processes, key=lambda p: p.exec_time)
@@ -32,4 +32,5 @@ def schedule():
     ave_waiting_time = added_waiting_time / len(sorted_list)
     print('Average waiting time:', ave_waiting_time)
     print('='*40)
-    return ave_waiting_time
+
+    return ave_waiting_time, sorted_list
