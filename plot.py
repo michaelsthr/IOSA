@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import random
 import numpy as np
 
-# TODO: 
+# TODO:
 # The best solution would be to write a Plotter class...
-# This plotter class behaves for every Scheduler differently 
+# This plotter class behaves for every Scheduler differently
 # I want to call it like this:
 # myplotter = Plotter(sjf)
 # myplotter.plot()
@@ -37,16 +37,22 @@ def plot(processes: list, sorted_processes: list, *args, w=12, h=4):
     legend_colors = [colors[sorted_processes.index(p)] for p in processes]
     legend_patches = [plt.Line2D([0], [0], color=color, lw=5)
                       for color in legend_colors]
+
     axis.legend(legend_patches, legend_labels,
                 loc="upper right", title="Processes")
 
     plt.xticks(np.arange(0, max(rel_sum)+max(value)+1, step=1))
     plt.yticks([])
     plt.grid(color='grey', linestyle='-', linewidth=0.1, axis="x")
+    plt.title(args[1])
+    plt.text(0.5, -0.2, f"average waiting time: {args[2]}", ha='center',
+             va='center', transform=axis.transAxes)
+
     plt.tight_layout()
     plt.show()
 
-
+# TODO: REFACTOR!!!
+# DO NOT USE ARGS!!! ?
 if __name__ == "__main__":
     # Example to show the functionality
     p1 = Process(name="p1", exec_time=22)
@@ -58,4 +64,5 @@ if __name__ == "__main__":
     processes = [p1, p2, p3, p4, p5]
     ave_waiting_time, sorted_processes = sjf.schedule(processes)
 
-    plot(processes, sorted_processes, "exec_time")
+    plot(processes, sorted_processes, "exec_time",
+         "Shortest Job First", ave_waiting_time)
