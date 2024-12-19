@@ -5,8 +5,8 @@ from plotter import Plotter
 class EarliestDeadlineFirst:
     def __init__(self):
         self.edf_list = [EDF_Process(name="p1", deadline=9, exec_time=4),
-                        EDF_Process(name="p2", deadline=9, exec_time=5),
-                        EDF_Process(name="p3", deadline=10, exec_time=8)]
+                         EDF_Process(name="p2", deadline=9, exec_time=5),
+                         EDF_Process(name="p3", deadline=10, exec_time=8)]
 
     def schedule(self) -> float:
         print('Earliest Deadline First:\n')
@@ -30,7 +30,10 @@ class EarliestDeadlineFirst:
         print('Average waiting time:', self.ave_waiting_time)
         print('='*40, end="\n")
         return self.ave_waiting_time, self.sorted_edf_list
-    
+
     def plot(self):
+        legend_labels = [f"{p.name}, exec_time={p.exec_time}, deadline={p.deadline}" for p in self.edf_list]
+        exec_times = [p.exec_time for p in self.sorted_edf_list]
+
         self.plotter = Plotter(self.edf_list,  self.sorted_edf_list, title="Earliest Deadline First")
-        self.plotter.plot("exec_time", self.ave_waiting_time)
+        self.plotter.plot(avg_time=self.ave_waiting_time, legend_labels=legend_labels, exec_times=exec_times)

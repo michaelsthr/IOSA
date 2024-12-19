@@ -1,7 +1,7 @@
-from schedulers.sjf import ShortestJobFirst
-from schedulers.llf import LeastLaxityFirst
-from schedulers.fcfs import FirstComeFirstServe
-from schedulers.edf import EarliestDeadlineFirst
+from schedulers.SJF import ShortestJobFirst
+from schedulers.LLF import LeastLaxityFirst
+from schedulers.FCFS import FirstComeFirstServe
+from schedulers.EDF import EarliestDeadlineFirst
 
 from colorama import Fore, Style
 from art import tprint

@@ -39,5 +39,8 @@ class ShortestJobFirst():
 
     def plot(self):
         self.plotter = Plotter(self.processes,  self.sorted_processes, title="Shortest Job First")
-        self.plotter.plot("exec_time", self.ave_waiting_time)
 
+        legend_labels = [f"{p.name}, exec_time={p.exec_time}" for p in self.processes]
+        exec_times = [p.exec_time for p in self.sorted_processes]
+
+        self.plotter.plot(avg_time=self.ave_waiting_time, legend_labels=legend_labels, exec_times=exec_times)

@@ -55,4 +55,8 @@ class FirstComeFirstServe:
     
     def plot(self):
         self.plotter = Plotter(self.fcfs_list,  self.fcfs_list, title="First Come First Serve")
-        self.plotter.plot("exec_time", self.ave_waiting_time)
+
+        legend_labels = [f"{p.name}, exec_time={p.exec_time}" for p in self.fcfs_list]
+        exec_times = [p.exec_time for p in self.fcfs_list]
+
+        self.plotter.plot(avg_time=self.ave_waiting_time, legend_labels=legend_labels, exec_times=exec_times)
