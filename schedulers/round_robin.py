@@ -3,12 +3,9 @@ from plotter import Plotter
 
 
 class RoundRobin:
-    def __init__(self):
-        self.rr_list = [RoundRobin_Process(exec_time=22, name='P1'),
-                        RoundRobin_Process(exec_time=2, name='P2'),
-                        RoundRobin_Process(exec_time=3, name='P3'),
-                        RoundRobin_Process(exec_time=5, name='P4'),
-                        RoundRobin_Process(exec_time=8, name='P5')]
+    def __init__(self, list):
+        self.rr_list = list
+       
 
     def schedule(self) -> float:
         print("Round Robin:\n")

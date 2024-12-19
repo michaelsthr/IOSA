@@ -3,6 +3,7 @@ from schedulers.least_laxity import LeastLaxityFirst
 from schedulers.first_come_first_serve import FirstComeFirstServe
 from schedulers.earliest_deadline import EarliestDeadlineFirst
 from schedulers.round_robin import RoundRobin
+from process import RoundRobin_Process
 
 from colorama import Fore, Style
 from art import tprint
@@ -37,10 +38,62 @@ if __name__ == "__main__":
         fcfs.plot()
 
     def rr():
-        rr = RoundRobin()
+        rr = RoundRobin( [RoundRobin_Process(exec_time=22, name='P1'),
+                        RoundRobin_Process(exec_time=2, name='P2'),
+                        RoundRobin_Process(exec_time=3, name='P3'),
+                        RoundRobin_Process(exec_time=5, name='P4'),
+                        RoundRobin_Process(exec_time=8, name='P5')])
         rr.schedule()
         # Not implemented yet
         # rr.plot()
+
+    def rr_2():
+        rr2 = [
+            RoundRobin(
+                [RoundRobin_Process(exec_time=22, name='P1'),
+                        RoundRobin_Process(exec_time=2, name='P2'),
+                        RoundRobin_Process(exec_time=3, name='P3'),
+                        RoundRobin_Process(exec_time=5, name='P4'),
+                        RoundRobin_Process(exec_time=8, name='P5')]
+            ),
+            RoundRobin(
+                [RoundRobin_Process(exec_time=8, name='P1'),
+                        RoundRobin_Process(exec_time=22, name='P2'),
+                        RoundRobin_Process(exec_time=2, name='P3'),
+                        RoundRobin_Process(exec_time=3, name='P4'),
+                        RoundRobin_Process(exec_time=5, name='P5')]
+            ),
+            RoundRobin(
+                [RoundRobin_Process(exec_time=5, name='P1'),
+                        RoundRobin_Process(exec_time=8, name='P2'),
+                        RoundRobin_Process(exec_time=22, name='P3'),
+                        RoundRobin_Process(exec_time=2, name='P4'),
+                        RoundRobin_Process(exec_time=3, name='P5')]
+            ),
+            RoundRobin(
+                [RoundRobin_Process(exec_time=3, name='P1'),
+                        RoundRobin_Process(exec_time=5, name='P2'),
+                        RoundRobin_Process(exec_time=8, name='P3'),
+                        RoundRobin_Process(exec_time=22, name='P4'),
+                        RoundRobin_Process(exec_time=2, name='P5')]
+            ),
+            liste = [RoundRobin_Process(exec_time=2, name='P1'),
+                        RoundRobin_Process(exec_time=3, name='P2'),
+                        RoundRobin_Process(exec_time=5, name='P3'),
+                        RoundRobin_Process(exec_time=8, name='P4'),
+                        RoundRobin_Process(exec_time=22, name='P5')]
+            RoundRobin(
+                [RoundRobin_Process(exec_time=2, name='P1'),
+                        RoundRobin_Process(exec_time=3, name='P2'),
+                        RoundRobin_Process(exec_time=5, name='P3'),
+                        RoundRobin_Process(exec_time=8, name='P4'),
+                        RoundRobin_Process(exec_time=22, name='P5')]
+            )
+        ]
+        for permutation in rr2:
+            permutation.schedule()
+            permutation.plot()
+
 
     while True:
         try:
