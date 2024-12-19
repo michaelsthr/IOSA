@@ -14,21 +14,20 @@ class RoundRobin:
         print("Round Robin:\n")
 
         copy_list = self.rr_list.copy()
-        quantum = int(input("Put in the quantum: "))
-        print(f'\nCalculation for quantum {quantum}:')
+        self.quantum = int(input("Put in the quantum: "))
+        print(f'\nCalculation for quantum {self.quantum}:')
         self.scheduled = []
         clock = 0
         sum_finish_time = 0
         while copy_list:
             for process in copy_list:
-                if (process.left_exec_time > quantum):
-                    process.left_exec_time -= quantum
-                    self.scheduled.append((process.name, quantum))
-                    clock += quantum
+                if (process.left_exec_time > self.quantum):
+                    process.left_exec_time -= self.quantum
+                    self.scheduled.append((process.name, self.quantum))
+                    clock += self.quantum
                 else:
                     self.scheduled.append((process.name, process.left_exec_time))
-                    quantum = self.scheduled[-1][1]
-                    clock += quantum
+                    clock += self.scheduled[-1][1]
                     print(self.scheduled[-1], f'-> popped at timestamp {clock}')
                     sum_finish_time += clock
                     process.left_exec_time = 0
@@ -45,7 +44,8 @@ class RoundRobin:
         exec_times = [p[1] for p in self.scheduled]
         data = [p[1] for p in self.scheduled]
         names = [p[0] for p in self.scheduled]
+        print("names:", names)
         legend_labels = None
 
         self.plotter = Plotter(processes=self.rr_list, sorted_processes=self.scheduled, title="Round Robin")
-        self.plotter.plot_rr(names=names, avg_time=self.ave_waiting_time, legend_labels=legend_labels, exec_times=exec_times, data=data)
+        self.plotter.plot_rr(names=names, avg_time=self.ave_waiting_time, legend_labels=legend_labels, exec_times=exec_times, data=data, q=self.quantum)

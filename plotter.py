@@ -52,23 +52,26 @@ class Plotter():
         plt.tight_layout()
         plt.show()
 
-    def plot_rr(self,names,  avg_time:float, legend_labels: list,data, exec_times: list, w=12, h=4):        
-        process_names = list(set(names))
+    def plot_rr(self, names,  avg_time:float, legend_labels: list,data, exec_times: list,q, w=12, h=6):        
+        process_names = [p.name for p in self.processes]
         colors_list = plt.cm.Set3.colors
         colors_dict = {name: colors_list[i % len(colors_list)] for i, name in enumerate(process_names)}
         colors = [colors_dict[name] for name in names]
 
         cumulative = np.cumsum([0] + data[:-1])
         _, axis = plt.subplots(figsize=(w, h))
-        axis.barh(0, data, left=cumulative, color=colors, edgecolor='black')
+        bars = axis.barh(0, data, left=cumulative, color=colors, edgecolor='black')
+        print("NNN", bars)
+        axis.bar_label(bars, labels=names, label_type="center")
         axis.get_yaxis().set_visible(False)
         axis.set_xlabel('Time')
 
         handles = [plt.Line2D([0], [0], color=colors_dict[name], lw=4) for name in process_names]
-        # legend_labels = [f"{p}, exec_time={p.exec_time}" for p in self.process_names]
-        axis.legend(handles, process_names, title="Processes", loc='upper right')
+        legend_labels = [f"{p.name}, Q={q}, exec_time={p.exec_time}" for p in self.processes]
+        axis.legend(handles, legend_labels, title="Processes", loc='upper right')
         axis.set_title(self.title)
 
+        plt.xticks(np.arange(0, max(cumulative)+max(exec_times)-1, step=1))
         plt.text(0.5, -0.2, f"average waiting time: {round(avg_time, 2)}", ha='center', va='center', transform=axis.transAxes)
         plt.tight_layout()
         plt.show()
