@@ -41,7 +41,7 @@ class SJF_Process(Process):
         self.exec_time = exec_time
 
 class RoundRobin_Process(Process):
-    def __init__(self, exec_time, left_exec_time, name=None):
+    def __init__(self, exec_time, name=None):
         self.exec_time = exec_time
-        self.left_exec_time = left_exec_time
+        self.left_exec_time = exec_time
         self.name = name
