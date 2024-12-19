@@ -1,8 +1,8 @@
-from schedulers.SJF import ShortestJobFirst
-from schedulers.LLF import LeastLaxityFirst
-from schedulers.FCFS import FirstComeFirstServe
-from schedulers.EDF import EarliestDeadlineFirst
-from schedulers.rr import RoundRobin
+from schedulers.shortest_job import ShortestJobFirst
+from schedulers.least_laxity import LeastLaxityFirst
+from schedulers.first_come_first_serve import FirstComeFirstServe
+from schedulers.earliest_deadline import EarliestDeadlineFirst
+from schedulers.round_robin import RoundRobin
 
 from colorama import Fore, Style
 from art import tprint
