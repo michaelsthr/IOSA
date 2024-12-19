@@ -16,31 +16,35 @@ class RoundRobin:
         copy_list = self.rr_list.copy()
         quantum = int(input("Put in the quantum: "))
         print(f'\nCalculation for quantum {quantum}:')
-        scheduled = []
+        self.scheduled = []
         clock = 0
         sum_finish_time = 0
         while copy_list:
             for process in copy_list:
                 if (process.left_exec_time > quantum):
                     process.left_exec_time -= quantum
-                    scheduled.append((process.name, quantum))
+                    self.scheduled.append((process.name, quantum))
                     clock += quantum
                 else:
-                    scheduled.append((process.name, process.left_exec_time))
-                    quantum = scheduled[-1][1]
+                    self.scheduled.append((process.name, process.left_exec_time))
+                    quantum = self.scheduled[-1][1]
                     clock += quantum
-                    print(scheduled[-1], f'-> popped at timestamp {clock}')
+                    print(self.scheduled[-1], f'-> popped at timestamp {clock}')
                     sum_finish_time += clock
                     process.left_exec_time = 0
 
             copy_list = [x for x in copy_list if x.left_exec_time > 0]
 
-        ave_waiting_time = sum_finish_time / len(self.rr_list)
-        print('Average waiting time:', ave_waiting_time)
+        self.ave_waiting_time = sum_finish_time / len(self.rr_list)
+        print('Average waiting time:', self.ave_waiting_time)
 
-        print(scheduled)
-        return ave_waiting_time
+        print(self.scheduled)
+        return self.ave_waiting_time
 
     def plot(self):
-        self.plotter = Plotter(self.rr_list, title="Round Robin")
-        self.plotter.plot()
+        exec_times = [p[1] for p in self.scheduled]
+        data = [p[1] for p in self.scheduled]
+        names = [p[0] for p in self.scheduled]
+
+        self.plotter = Plotter(processes=self.rr_list, sorted_processes=self.scheduled, title="Round Robin")
+        self.plotter.plot_rr(names=names, avg_time=self.ave_waiting_time, legend_labels=legend_labels, exec_times=exec_times, data=data)
