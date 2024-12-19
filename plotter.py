@@ -64,32 +64,36 @@ class Plotter():
         plt.show()
 
     def plot_round_robin(self, legend_labels: list, w=12, h=6):
+        """Specialized plotter function for round robin"""
         process_names = [p.name for p in self.processes]
 
         # Extract values from round robin tuples: ("P1", 3)
         data_names = [p[0] for p in self.sorted_processes]
         data = [p[1] for p in self.sorted_processes]
 
+        # Create color maps and map with a dictionary
         colors_list = cm.Set3.colors
         colors_dict = {name: colors_list[i % len(colors_list)] for i, name in enumerate(process_names)}
         colors = [colors_dict[name] for name in data_names]
 
+        # Addition of every element in data
         cumulative_sum = np.cumsum([0] + data[:-1])
+
+        # Create plot and bars
         _, axis = plt.subplots(figsize=(w, h))
         bars = axis.barh(0, data, left=cumulative_sum, color=colors, edgecolor='black')
-
         axis.bar_label(bars, labels=data_names, label_type="center")
         axis.get_yaxis().set_visible(False)
         axis.set_xlabel('Time')
+        plt.text(0.5, -0.2, f"average waiting time: {round(self.ave_waiting_time, 2)}", 
+                 ha='center', va='center', transform=axis.transAxes)
+        plt.xticks(np.arange(0, max(cumulative_sum)+max(data)-1, step=1))
 
+        # Create legend
         handles = [plt.Line2D([0], [0], color=colors_dict[name], lw=4) for name in process_names]
-
         axis.legend(handles, legend_labels, title="Processes", loc="upper right")
         axis.set_title(self.title)
 
-        plt.xticks(np.arange(0, max(cumulative_sum)+max(data)-1, step=1))
-        plt.text(0.5, -0.2, f"average waiting time: {round(self.ave_waiting_time, 2)}", 
-                 ha='center', va='center', transform=axis.transAxes)
         plt.tight_layout()
         plt.show()
 
