@@ -65,7 +65,7 @@ class Plotter():
         axis.set_xlabel('Time')
 
         handles = [plt.Line2D([0], [0], color=colors_dict[name], lw=4) for name in process_names]
-        legend_labels = [f"{p}, exec_time={p.exec_time}" for p in self.process_names]
+        # legend_labels = [f"{p}, exec_time={p.exec_time}" for p in self.process_names]
         axis.legend(handles, process_names, title="Processes", loc='upper right')
         axis.set_title(self.title)
 

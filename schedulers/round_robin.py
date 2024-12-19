@@ -45,6 +45,7 @@ class RoundRobin:
         exec_times = [p[1] for p in self.scheduled]
         data = [p[1] for p in self.scheduled]
         names = [p[0] for p in self.scheduled]
+        legend_labels = None
 
         self.plotter = Plotter(processes=self.rr_list, sorted_processes=self.scheduled, title="Round Robin")
         self.plotter.plot_rr(names=names, avg_time=self.ave_waiting_time, legend_labels=legend_labels, exec_times=exec_times, data=data)
