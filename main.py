@@ -2,6 +2,7 @@ from schedulers.SJF import ShortestJobFirst
 from schedulers.LLF import LeastLaxityFirst
 from schedulers.FCFS import FirstComeFirstServe
 from schedulers.EDF import EarliestDeadlineFirst
+from schedulers.rr import RoundRobin
 
 from colorama import Fore, Style
 from art import tprint
@@ -36,8 +37,9 @@ if __name__ == "__main__":
         fcfs.plot()
 
     def rr():
-        # TODO
-        pass
+        rr = RoundRobin()
+        rr.schedule()
+        rr.plot
 
     while True:
         try:
