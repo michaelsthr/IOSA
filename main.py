@@ -39,7 +39,8 @@ if __name__ == "__main__":
     def rr():
         rr = RoundRobin()
         rr.schedule()
-        rr.plot
+        # Not implemented yet
+        # rr.plot()
 
     while True:
         try:
