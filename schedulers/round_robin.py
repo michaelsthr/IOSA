@@ -45,10 +45,8 @@ class RoundRobin:
     def plot(self):
         legend_labels = [f"{p.name}, Q={self.quantum}, exec_time={p.exec_time}"
                          for p in self.rr_list]
-
         self.plotter = Plotter(processes=self.rr_list,
                                sorted_processes=self.scheduled,
                                ave_waiting_time=self.ave_waiting_time,
                                title="Round Robin")
-
         self.plotter.plot_round_robin(legend_labels)

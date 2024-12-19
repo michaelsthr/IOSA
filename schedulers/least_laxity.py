@@ -50,9 +50,10 @@ class LeastLaxityFirst:
         return self.ave_waiting_time, self.sorted_after_lax
 
     def plot(self):
-        self.plotter = Plotter(self.llf_list,  self.sorted_after_lax, title="Least Laxity First")
-
-        legend_labels = [f"{p.name}, exec_time={p.exec_time}, laxity={p.laxity}" for p in self.llf_list]
-        exec_times = [p.exec_time for p in self.llf_list]
-
-        self.plotter.plot(avg_time=self.ave_waiting_time, legend_labels=legend_labels, exec_times=exec_times)
+        legend_labels = [f"{p.name}, exec_time={p.exec_time}, laxity={p.laxity}" 
+                         for p in self.llf_list]
+        self.plotter = Plotter(processes=self.llf_list,
+                               sorted_processes=self.sorted_after_lax,
+                               ave_waiting_time=self.ave_waiting_time,
+                               title="Least Laxity First")
+        self.plotter.plot(legend_labels=legend_labels)
