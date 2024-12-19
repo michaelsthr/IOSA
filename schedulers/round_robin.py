@@ -26,9 +26,11 @@ class RoundRobin:
                     self.scheduled.append((process.name, self.quantum))
                     clock += self.quantum
                 else:
-                    self.scheduled.append((process.name, process.left_exec_time))
+                    self.scheduled.append(
+                        (process.name, process.left_exec_time))
                     clock += self.scheduled[-1][1]
-                    print(self.scheduled[-1], f'-> popped at timestamp {clock}')
+                    print(self.scheduled[-1],
+                          f'-> popped at timestamp {clock}')
                     sum_finish_time += clock
                     process.left_exec_time = 0
 
@@ -41,11 +43,12 @@ class RoundRobin:
         return self.ave_waiting_time
 
     def plot(self):
-        exec_times = [p[1] for p in self.scheduled]
-        data = [p[1] for p in self.scheduled]
-        names = [p[0] for p in self.scheduled]
-        print("names:", names)
-        legend_labels = None
+        legend_labels = [f"{p.name}, Q={self.quantum}, exec_time={p.exec_time}"
+                         for p in self.rr_list]
 
-        self.plotter = Plotter(processes=self.rr_list, sorted_processes=self.scheduled, title="Round Robin")
-        self.plotter.plot_rr(names=names, avg_time=self.ave_waiting_time, legend_labels=legend_labels, exec_times=exec_times, data=data, q=self.quantum)
+        self.plotter = Plotter(processes=self.rr_list,
+                               sorted_processes=self.scheduled,
+                               ave_waiting_time=self.ave_waiting_time,
+                               title="Round Robin")
+
+        self.plotter.plot_round_robin(legend_labels)
