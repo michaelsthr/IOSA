@@ -31,11 +31,6 @@ class LLF_Process(Process):
     def calc_laxity(self):
         self.laxity = (self.deadline - self.ready_time) - self.exec_time
 
-class SJF_Process(Process):
-    def __init__(self, exec_time, name=None):
-        self.name = name
-        self.exec_time = exec_time
-
 class RoundRobin_Process(Process):
     def __init__(self, exec_time: int, name="p"):
         self.exec_time = exec_time

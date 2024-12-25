@@ -1,17 +1,11 @@
-from process import SJF_Process
 from plotter import Plotter
+from schedulers.scheduler import Scheduler
 from colorama import Fore
 
 
-class ShortestJobFirst():
+class ShortestJobFirst(Scheduler):
     def __init__(self):
-        p1 = SJF_Process(name="p1", exec_time=22)
-        p3 = SJF_Process(name="p3", exec_time=3)
-        p4 = SJF_Process(name="p4", exec_time=5)
-        p2 = SJF_Process(name="p2", exec_time=2)
-        p5 = SJF_Process(name="p5", exec_time=8)
-        processes = [p1, p2, p3, p4, p5]
-        self.processes = processes
+        super().__init__()
 
     def schedule(self):
         print(f"{Fore.CYAN}Shortest Job First:\n{Fore.RESET}")

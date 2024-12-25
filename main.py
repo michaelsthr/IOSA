@@ -29,6 +29,7 @@ if __name__ == "__main__":
 
     def sjf():
         sjf = ShortestJobFirst()
+        sjf.read_input("input/sjf/input0.txt", Process)
         sjf.schedule()
         sjf.plot()
 
