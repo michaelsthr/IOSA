@@ -44,8 +44,7 @@ if __name__ == "__main__":
                         RoundRobin_Process(exec_time=5, name='P4'),
                         RoundRobin_Process(exec_time=8, name='P5')])
         rr.schedule()
-        # Not implemented yet
-        # rr.plot()
+        rr.plot()
 
     def rr_2():
         rr2 = [

@@ -11,33 +11,39 @@ class RoundRobin:
         print("Round Robin:\n")
 
         copy_list = self.rr_list.copy()
-        quantum = int(input("Put in the quantum: "))
-        print(f'\nCalculation for quantum {quantum}:')
-        scheduled = []
+        self.quantum = int(input("Put in the quantum: "))
+        print(f'\nCalculation for quantum {self.quantum}:')
+        self.scheduled = []
         clock = 0
         sum_finish_time = 0
         while copy_list:
             for process in copy_list:
-                if (process.left_exec_time > quantum):
-                    process.left_exec_time -= quantum
-                    scheduled.append((process.name, quantum))
-                    clock += quantum
+                if (process.left_exec_time > self.quantum):
+                    process.left_exec_time -= self.quantum
+                    self.scheduled.append((process.name, self.quantum))
+                    clock += self.quantum
                 else:
-                    scheduled.append((process.name, process.left_exec_time))
-                    quantum = scheduled[-1][1]
-                    clock += quantum
-                    print(scheduled[-1], f'-> popped at timestamp {clock}')
+                    self.scheduled.append(
+                        (process.name, process.left_exec_time))
+                    clock += self.scheduled[-1][1]
+                    print(self.scheduled[-1],
+                          f'-> popped at timestamp {clock}')
                     sum_finish_time += clock
                     process.left_exec_time = 0
 
             copy_list = [x for x in copy_list if x.left_exec_time > 0]
 
-        ave_waiting_time = sum_finish_time / len(self.rr_list)
-        print('Average waiting time:', ave_waiting_time)
+        self.ave_waiting_time = sum_finish_time / len(self.rr_list)
+        print('Average waiting time:', self.ave_waiting_time)
 
-        print(scheduled)
-        return ave_waiting_time
+        print(self.scheduled)
+        return self.ave_waiting_time
 
     def plot(self):
-        self.plotter = Plotter(self.rr_list, title="Round Robin")
-        self.plotter.plot()
+        legend_labels = [f"{p.name}, Q={self.quantum}, exec_time={p.exec_time}"
+                         for p in self.rr_list]
+        self.plotter = Plotter(processes=self.rr_list,
+                               sorted_processes=self.scheduled,
+                               ave_waiting_time=self.ave_waiting_time,
+                               title="Round Robin")
+        self.plotter.plot_round_robin(legend_labels)

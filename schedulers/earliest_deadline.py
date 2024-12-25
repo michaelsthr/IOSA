@@ -32,8 +32,12 @@ class EarliestDeadlineFirst:
         return self.ave_waiting_time, self.sorted_edf_list
 
     def plot(self):
-        legend_labels = [f"{p.name}, exec_time={p.exec_time}, deadline={p.deadline}" for p in self.edf_list]
-        exec_times = [p.exec_time for p in self.sorted_edf_list]
+        legend_labels = [f"{p.name}, exec_time={p.exec_time}, deadline={p.deadline}" 
+                         for p in self.edf_list]
 
-        self.plotter = Plotter(self.edf_list,  self.sorted_edf_list, title="Earliest Deadline First")
-        self.plotter.plot(avg_time=self.ave_waiting_time, legend_labels=legend_labels, exec_times=exec_times)
+        self.plotter = Plotter(processes=self.edf_list,  
+                               sorted_processes=self.sorted_edf_list,
+                               ave_waiting_time=self.ave_waiting_time,
+                               title="Earliest Deadline First")
+        
+        self.plotter.plot(legend_labels=legend_labels)
