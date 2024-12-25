@@ -11,29 +11,6 @@ class RoundRobin(Scheduler):
         super().__init__()
         self.quantum = quantum
 
-    def read_input(self, input_path: str):
-        """
-        Reads input from a file and populates the rr_list with RoundRobin_Process instances.
-        Args:
-            input_path (str): The path to the input file.
-        Raises:
-            ValueError: If the input file contains lines that do not match the expected format.
-        Expected format for each line in the input file:
-            name=<process_name>, exec_time=<execution_time>
-        """
-        self.processes = []
-        with open(input_path) as f:
-            data = f.readlines()
-        for line in data:
-            pattern = r"name=(\w+),\s+exec_time=(\d+)"
-            match = re.search(pattern, line)
-
-            if match is None:
-                raise ValueError(f"Input '{input_path}' has invalid format:"
-                                 "expected format is name=<process_name>, exec_time=<execution_time>")
-            
-            self.processes.append(RoundRobin_Process(int(match.group(2)), str(match.group(1))))
-
     def schedule(self) -> float:
         """
         Perform Round Robin scheduling.

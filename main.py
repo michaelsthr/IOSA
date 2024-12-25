@@ -3,7 +3,7 @@ from schedulers.least_laxity import LeastLaxityFirst
 from schedulers.first_come_first_serve import FirstComeFirstServe
 from schedulers.earliest_deadline import EarliestDeadlineFirst
 from schedulers.round_robin import RoundRobin
-from process import RoundRobin_Process
+from process import Process, RoundRobin_Process
 
 from colorama import Fore
 from art import tprint
@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
     def rr():
         rr = RoundRobin()
-        rr.read_input("input/rr/input0.txt")
+        rr.read_input("input/rr/input0.txt", RoundRobin_Process)
         rr.schedule()
         rr.plot()
 
