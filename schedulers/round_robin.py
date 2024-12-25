@@ -4,8 +4,9 @@ from plotter import Plotter
 
 
 class RoundRobin:
-    def __init__(self):
+    def __init__(self, quantum = None):
         self.rr_list = None
+        self.quantum = quantum
 
     def read_input(self, input_path: str):
         """
@@ -55,8 +56,9 @@ class RoundRobin:
         self.check_list()
 
         copy_list = self.rr_list.copy()
-        self.quantum = int(input("Put in the quantum: "))
-        print(f'\nCalculation for quantum {self.quantum}:')
+        if not self.quantum:
+            self.quantum = int(input("Put in the quantum: "))
+        print(f'Calculation for quantum {self.quantum}:')
         self.scheduled = []
         clock = 0
         sum_finish_time = 0

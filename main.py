@@ -49,7 +49,7 @@ if __name__ == "__main__":
         rr_scheduler_list = []
 
         for i in range(5):
-            rr_scheduler = RoundRobin()
+            rr_scheduler = RoundRobin(3)
             rr_scheduler.read_input(f"input/rr/input{i}.txt")
             rr_scheduler_list.append(rr_scheduler)
 
