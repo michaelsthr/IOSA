@@ -1,6 +1,7 @@
 import re
 from process import RoundRobin_Process
 from plotter import Plotter
+from colorama import Fore
 
 
 class RoundRobin:
@@ -51,7 +52,7 @@ class RoundRobin:
             raise Exception("No lists for the processes defined!")
 
     def schedule(self) -> float:
-        print("Round Robin:\n")
+        print(f"{Fore.CYAN}Round Robin:\n{Fore.RESET}")
 
         self.check_list()
 
@@ -82,7 +83,7 @@ class RoundRobin:
         self.ave_waiting_time = sum_finish_time / len(self.rr_list)
         print('Average waiting time:', self.ave_waiting_time)
 
-        print(self.scheduled)
+
         return self.ave_waiting_time
 
     def plot(self):

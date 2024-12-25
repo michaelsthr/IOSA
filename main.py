@@ -5,7 +5,7 @@ from schedulers.earliest_deadline import EarliestDeadlineFirst
 from schedulers.round_robin import RoundRobin
 from process import RoundRobin_Process
 
-from colorama import Fore, Style
+from colorama import Fore
 from art import tprint
 
 if __name__ == "__main__":
@@ -54,23 +54,23 @@ if __name__ == "__main__":
             rr_scheduler_list.append(rr_scheduler)
 
         for permutation in rr_scheduler_list:
+            print("-" * 40)
             permutation.schedule()
             permutation.plot()
 
     while True:
         try:
             schedulers = ["sjf", "fcfs", "edf", "llf", "rr", "rr2"]
-            print("\n")
-            print("-" * 40, end="\n")
-            user_input = input(f"Paste your desired scheduler {schedulers}\n"
-                               "Type exit to exit :o\n"
-                               " --> ").strip()
+            print("-" * 40)
+            user_input = input(f"Choose a scheduler from {schedulers}\n"
+                               f"or type 'exit' to quit:\n --> ").strip().lower()
             if user_input in schedulers:
+                print("-" * 40)
                 exec(f"{user_input}()")
             elif user_input == "exit":
                 exit()
             else:
                 print("Invalid scheduler!")
         except Exception as ex:
-            print(f"{Fore.YELLOW} An unexpected error occured: {ex}\n" 
+            print(f"{Fore.YELLOW} An unexpected error occured: {ex}\n"
                   f"But you can try other schedulers :){Fore.RESET}\n")

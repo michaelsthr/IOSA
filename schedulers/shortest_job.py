@@ -1,5 +1,6 @@
 from process import SJF_Process
 from plotter import Plotter
+from colorama import Fore
 
 
 class ShortestJobFirst():
@@ -13,7 +14,7 @@ class ShortestJobFirst():
         self.processes = processes
 
     def schedule(self):
-        print("Shortest Job First:\n")
+        print(f"{Fore.CYAN}Shortest Job First:\n{Fore.RESET}")
 
         self.sorted_processes = sorted(self.processes, key=lambda p: p.exec_time)
 
@@ -33,7 +34,6 @@ class ShortestJobFirst():
         print(added_waiting_time, ' / ', len(self.sorted_processes))
         self.ave_waiting_time = added_waiting_time / len(self.sorted_processes)
         print('Average waiting time:', self.ave_waiting_time)
-        print('='*40, end="\n")
 
         return self.ave_waiting_time, self.sorted_processes
 

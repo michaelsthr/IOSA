@@ -1,5 +1,6 @@
 from process import LLF_Process
 from plotter import Plotter
+from colorama import Fore
 
 class LeastLaxityFirst:
     def __init__(self):
@@ -22,7 +23,7 @@ class LeastLaxityFirst:
         # Average waiting time: 29.0
 
         self.sorted_after_lax = sorted(self.llf_list, key=lambda x: x.laxity, reverse=False)
-        print('Least Laxity First:\n')
+        print(f'{Fore.CYAN}Least Laxity First:\n{Fore.RESET}')
         print('Processes:')
 
         for process in self.llf_list:
@@ -46,7 +47,6 @@ class LeastLaxityFirst:
         print(added_waiting_time, ' / ', len(self.sorted_after_lax))
         self.ave_waiting_time = added_waiting_time / len(self.sorted_after_lax)
         print('Average waiting time:', self.ave_waiting_time)
-        print('='*40, end="\n")
         return self.ave_waiting_time, self.sorted_after_lax
 
     def plot(self):

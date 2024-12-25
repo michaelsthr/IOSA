@@ -1,5 +1,6 @@
 from process import FCFS_Process
 from plotter import Plotter
+from colorama import Fore
 
 class FirstComeFirstServe:
     def __init__(self):
@@ -29,7 +30,7 @@ class FirstComeFirstServe:
         # 145  /  5
         # Average waiting time: 29.0
 
-        print('First Come First Serve:\n')
+        print(f'{Fore.CYAN}First Come First Serve:\n{Fore.RESET}')
         print('Processes:\nExecution-Times:')
 
         # print the details of the input processes
@@ -50,7 +51,6 @@ class FirstComeFirstServe:
         print(added_waiting_time, ' / ', len(self.fcfs_list))
         self.ave_waiting_time = added_waiting_time / len(self.fcfs_list)
         print('Average waiting time:', self.ave_waiting_time)
-        print('='*40, end="\n")
         return self.ave_waiting_time, self.fcfs_list
     
     def plot(self):
