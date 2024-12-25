@@ -38,65 +38,28 @@ if __name__ == "__main__":
         fcfs.plot()
 
     def rr():
-        rr = RoundRobin( [RoundRobin_Process(exec_time=22, name='P1'),
-                        RoundRobin_Process(exec_time=2, name='P2'),
-                        RoundRobin_Process(exec_time=3, name='P3'),
-                        RoundRobin_Process(exec_time=5, name='P4'),
-                        RoundRobin_Process(exec_time=8, name='P5')])
+        rr = RoundRobin()
+        rr.read_input("input/rr/input0.txt")
         rr.schedule()
         rr.plot()
 
-    def rr_2():
-        rr2 = [
-            RoundRobin(
-                [RoundRobin_Process(exec_time=22, name='P1'),
-                        RoundRobin_Process(exec_time=2, name='P2'),
-                        RoundRobin_Process(exec_time=3, name='P3'),
-                        RoundRobin_Process(exec_time=5, name='P4'),
-                        RoundRobin_Process(exec_time=8, name='P5')]
-            ),
-            RoundRobin(
-                [RoundRobin_Process(exec_time=8, name='P1'),
-                        RoundRobin_Process(exec_time=22, name='P2'),
-                        RoundRobin_Process(exec_time=2, name='P3'),
-                        RoundRobin_Process(exec_time=3, name='P4'),
-                        RoundRobin_Process(exec_time=5, name='P5')]
-            ),
-            RoundRobin(
-                [RoundRobin_Process(exec_time=5, name='P1'),
-                        RoundRobin_Process(exec_time=8, name='P2'),
-                        RoundRobin_Process(exec_time=22, name='P3'),
-                        RoundRobin_Process(exec_time=2, name='P4'),
-                        RoundRobin_Process(exec_time=3, name='P5')]
-            ),
-            RoundRobin(
-                [RoundRobin_Process(exec_time=3, name='P1'),
-                        RoundRobin_Process(exec_time=5, name='P2'),
-                        RoundRobin_Process(exec_time=8, name='P3'),
-                        RoundRobin_Process(exec_time=22, name='P4'),
-                        RoundRobin_Process(exec_time=2, name='P5')]
-            ),
-            liste = [RoundRobin_Process(exec_time=2, name='P1'),
-                        RoundRobin_Process(exec_time=3, name='P2'),
-                        RoundRobin_Process(exec_time=5, name='P3'),
-                        RoundRobin_Process(exec_time=8, name='P4'),
-                        RoundRobin_Process(exec_time=22, name='P5')]
-            RoundRobin(
-                [RoundRobin_Process(exec_time=2, name='P1'),
-                        RoundRobin_Process(exec_time=3, name='P2'),
-                        RoundRobin_Process(exec_time=5, name='P3'),
-                        RoundRobin_Process(exec_time=8, name='P4'),
-                        RoundRobin_Process(exec_time=22, name='P5')]
-            )
-        ]
-        for permutation in rr2:
+    def rr2():
+        # TODO: Display all at once ...
+        # TODO: Define all quantums at once ...
+        rr_scheduler_list = []
+
+        for i in range(5):
+            rr_scheduler = RoundRobin()
+            rr_scheduler.read_input(f"input/rr/input{i}.txt")
+            rr_scheduler_list.append(rr_scheduler)
+
+        for permutation in rr_scheduler_list:
             permutation.schedule()
             permutation.plot()
 
-
     while True:
         try:
-            schedulers = ["sjf", "fcfs", "edf", "llf", "rr"]
+            schedulers = ["sjf", "fcfs", "edf", "llf", "rr", "rr2"]
             print("\n")
             print("-" * 40, end="\n")
             user_input = input(f"Paste your desired scheduler {schedulers}\n"
@@ -109,5 +72,5 @@ if __name__ == "__main__":
             else:
                 print("Invalid scheduler!")
         except Exception as ex:
-            print(f"{Fore.YELLOW} An unexpected error occured: {ex}\n"
+            print(f"{Fore.YELLOW} An unexpected error occured: {ex}\n" 
                   f"But you can try other schedulers :){Fore.RESET}\n")
