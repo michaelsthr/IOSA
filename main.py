@@ -46,7 +46,6 @@ if __name__ == "__main__":
 
     def rr2():
         # TODO: Display all at once ...
-        # TODO: Define all quantums at once ...
         rr_scheduler_list = []
 
         for i in range(5):
