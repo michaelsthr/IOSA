@@ -5,6 +5,7 @@ from schedulers.earliest_deadline import EarliestDeadlineFirst
 from schedulers.round_robin import RoundRobin
 from process import Process, RoundRobin_Process
 
+from threading import Thread
 from colorama import Fore
 from art import tprint
 
@@ -59,7 +60,7 @@ if __name__ == "__main__":
 
         for i in range(5):
             rr_scheduler = RoundRobin(3)
-            rr_scheduler.read_input(f"input/rr/input{i}.txt")
+            rr_scheduler.read_input(f"input/rr/input{i}.txt", RoundRobin_Process)
             rr_scheduler_list.append(rr_scheduler)
 
         for permutation in rr_scheduler_list:
