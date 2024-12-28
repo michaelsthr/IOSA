@@ -1,4 +1,4 @@
-from schedulers.shortest_job import ShortestJobFirst
+from schedulers.shortest_job import NPShortestJobFirst, PShortestJobFirst
 from schedulers.least_laxity import LeastLaxityFirst
 from schedulers.first_come_first_serve import FirstComeFirstServe
 from schedulers.earliest_deadline import EarliestDeadlineFirst
@@ -16,6 +16,8 @@ if __name__ == "__main__":
     print("-" * 40)
 
     # TODO: Multiple windows at once
+    # Kleine Blöcke in Round Robin anstatt eines großen Blockes 
+    # (Einfach in Einser Stellen aufteilen >> siehe Folien)
 
     def llf():
         llf = LeastLaxityFirst()
@@ -28,7 +30,14 @@ if __name__ == "__main__":
         edf.plot()
 
     def sjf():
-        sjf = ShortestJobFirst()
+        sjf = NPShortestJobFirst()
+        sjf.read_input("input/sjf/input0.txt", Process)
+        sjf.schedule()
+        sjf.plot()
+
+    def psjf():
+        """preemptive shortest job first"""
+        sjf = PShortestJobFirst()
         sjf.read_input("input/sjf/input0.txt", Process)
         sjf.schedule()
         sjf.plot()
@@ -60,7 +69,7 @@ if __name__ == "__main__":
 
     while True:
         try:
-            schedulers = ["sjf", "fcfs", "edf", "llf", "rr", "rr2"]
+            schedulers = ["sjf", "psjf", "fcfs", "edf", "llf", "rr", "rr2"]
             print("-" * 40)
             user_input = input(f"Choose a scheduler from {schedulers}\n"
                                f"or type 'exit' to quit:\n --> ").strip().lower()

@@ -1,5 +1,5 @@
-name=P1, exec_time=22
-name=P3, exec_time=3
-name=P4, exec_time=5
-name=P2, exec_time=2
-name=P5, exec_time=8
+name=P1, exec_time=22, ready_time=0
+name=P3, exec_time=2, ready_time=0
+name=P4, exec_time=3, ready_time=4
+name=P2, exec_time=5, ready_time=4
+name=P5, exec_time=8, ready_time=4

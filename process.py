@@ -4,6 +4,9 @@ class Process:
         self.exec_time = kwargs.get("exec_time")
         self.start_time = kwargs.get("start_time")
         self.complet_time = kwargs.get("complet_time")
+        self.ready_time = kwargs.get("ready_time")
+
+        self.left_exec_time = self.exec_time
 
     def __str__(self):
         """Returns a string of the object's attributes with non-None values."""

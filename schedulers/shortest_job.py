@@ -3,7 +3,12 @@ from schedulers.scheduler import Scheduler
 from colorama import Fore
 
 
-class ShortestJobFirst(Scheduler):
+class NPShortestJobFirst(Scheduler):
+    """
+    Non Preemptive shortest job first.
+    >Can not< break process to schedule another process
+    """
+
     def __init__(self):
         super().__init__()
 
@@ -32,7 +37,7 @@ class ShortestJobFirst(Scheduler):
         return self.ave_waiting_time, self.sorted_processes
 
     def plot(self):
-        legend_labels = [f"{p.name}, exec_time={p.exec_time}" 
+        legend_labels = [f"{p.name}, exec_time={p.exec_time}"
                          for p in self.processes]
         self.plotter = Plotter(processes=self.processes,
                                sorted_processes=self.sorted_processes,
@@ -40,3 +45,61 @@ class ShortestJobFirst(Scheduler):
                                title="Shortest Job First")
 
         self.plotter.plot(legend_labels=legend_labels)
+
+
+class PShortestJobFirst(Scheduler):
+    """
+    Preemptive shortest job first.
+    >Can< break process to schedule another process
+    """
+
+    def __init__(self):
+        super().__init__()
+
+    def schedule(self):
+        print(f"{Fore.CYAN}Preemptive Shortest Job First:\n{Fore.RESET}")
+
+        processes_to_schedule = sorted(self.processes, key=lambda p: (p.ready_time, p.exec_time)).copy()
+
+        clock = 0
+        sum_finish_time = 0
+
+        while processes_to_schedule:
+            ready_processes = [p for p in processes_to_schedule if p.ready_time <= clock]
+            if not ready_processes:
+                clock = processes_to_schedule[0].ready_time
+                continue
+
+            ready_processes = sorted(ready_processes, key=lambda p: p.exec_time)
+            current_process = ready_processes[0]
+
+            # I got some random error without `default=float('inf')`. Dont ask me what this is
+            next_ready_time = min([p.ready_time for p in processes_to_schedule if p.ready_time > clock], default=float('inf'))
+            time_slice = min(current_process.left_exec_time, next_ready_time - clock)
+
+            current_process.left_exec_time -= time_slice
+            self.scheduled.append((current_process.name, time_slice))
+            clock += time_slice
+
+            if current_process.left_exec_time == 0:
+                sum_finish_time += clock
+                print(f'{current_process.name} finished at timestamp {clock}')
+                processes_to_schedule.remove(current_process)
+
+        self.average_waiting_time = sum_finish_time / len(self.processes)
+        print('Average waiting time:', self.average_waiting_time)
+
+        return self.average_waiting_time
+
+    def plot(self):
+        """
+        Visualize the scheduling result.
+        """
+        self.check_processes()
+        legend_labels = [f"{p.name}, exec_time={p.exec_time}, ready_time={p.ready_time}"
+                         for p in self.processes]
+        self.plotter = Plotter(processes=self.processes,
+                               sorted_processes=self.scheduled,
+                               ave_waiting_time=self.average_waiting_time,
+                               title="Preemptive Shortest Job First")
+        self.plotter.plot_round_robin(legend_labels)
