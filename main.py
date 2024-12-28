@@ -16,61 +16,59 @@ if __name__ == "__main__":
     print(f"{Fore.GREEN}Made by: Matthi, Samu, Michi{Fore.RESET}")
     print("-" * 40)
 
-    # TODO: Multiple windows at once
-    # Kleine Blöcke in Round Robin anstatt eines großen Blockes
-    # (Einfach in Einser Stellen aufteilen >> siehe Folien)
-
     def llf():
+        """Least Laxity First"""
         llf = LeastLaxityFirst()
         llf.schedule()
         llf.plot()
+        plt.show()
 
     def edf():
+        """Earliest Deadline First"""
         edf = EarliestDeadlineFirst()
         edf.schedule()
         edf.plot()
+        plt.show()
 
     def sjf():
-        """ Non preemptive shortest job first"""
+        """Non Preemptive Shortest Job First"""
         sjf = NPShortestJobFirst()
         sjf.read_input("input/sjf/input0.txt", Process)
         sjf.schedule()
         sjf.plot()
+        plt.show()
 
     def psjf():
-        """preemptive shortest job first"""
+        """Preemptive Shortest Job First"""
         sjf = PShortestJobFirst()
         sjf.read_input("input/sjf/input0.txt", Process)
         sjf.schedule()
+
         sjf.plot()
+        plt.show()
 
     def fcfs():
+        """First Come First Serve"""
         fcfs = FirstComeFirstServe()
         fcfs.schedule()
+
         fcfs.plot()
+        plt.show()
 
     def rr():
+        """Round Robin"""
         rr = RoundRobin()
         rr.read_input("input/rr/input0.txt", RoundRobin_Process)
         rr.schedule()
+
         rr.plot()
-
-    def sjf2():
-        sjf_scheduler_list = []
-
-        for i in range(5):
-            sjf_scheduler = PShortestJobFirst()
-            sjf_scheduler.read_input(f"input/sjf/input{i}.txt", Process)
-            sjf_scheduler_list.append(sjf_scheduler)
-
-        for permutation in sjf_scheduler_list:
-            print("-" * 40)
-            permutation.schedule()
-            permutation.plot()
-
         plt.show()
 
-    def rr2():
+
+    # Specific permutation example for the project
+
+    def ex2():
+        """Permutation Example for exercice 2"""
         rr_scheduler_list = []
 
         for i in range(5):
@@ -86,10 +84,26 @@ if __name__ == "__main__":
 
         plt.show()
 
+    def ex3():
+        """Permutation Example for exercice 3"""
+        sjf_scheduler_list = []
+
+        for i in range(5):
+            sjf_scheduler = PShortestJobFirst()
+            sjf_scheduler.read_input(f"input/sjf/input{i}.txt", Process)
+            sjf_scheduler_list.append(sjf_scheduler)
+
+        for permutation in sjf_scheduler_list:
+            print("-" * 40)
+            permutation.schedule()
+            permutation.plot()
+
+        plt.show()
+
     while True:
         try:
             schedulers = ["sjf", "psjf", "fcfs",
-                          "edf", "llf", "rr", "rr2", "sjf2"]
+                          "edf", "llf", "rr", "ex2", "ex3"]
             print("-" * 40)
             user_input = input(f"Choose a scheduler from {schedulers}\n"
                                f"or type 'exit' to quit:\n --> ").strip().lower()

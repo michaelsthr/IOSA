@@ -35,12 +35,14 @@ class Plotter():
 
         process_times = [p.exec_time for p in self.sorted_processes]
         process_names = [p.name for p in self.sorted_processes]
-        relative_cumulative_sum = [sum(process_times[:i]) for i in range(len(process_times))]
+        relative_cumulative_sum = [sum(process_times[:i])
+                                   for i in range(len(process_times))]
 
         # Generate color map
         cmap = cm.get_cmap('Set3', len(self.sorted_processes))
         colors = [cmap(i) for i in range(len(self.sorted_processes))]
-        legend_colors =  [colors[self.sorted_processes.index(p)] for p in self.processes]
+        legend_colors = [
+            colors[self.sorted_processes.index(p)] for p in self.processes]
 
         # Place bars and labels
         bars = axis.barh(process_names, process_times,
@@ -50,7 +52,8 @@ class Plotter():
         axis.set_xlim(0, max(relative_cumulative_sum)+max(process_times)+1)
         axis.invert_yaxis()
 
-        legend_patches = [plt.Line2D([0], [0], color=color, lw=5) for color in legend_colors]
+        legend_patches = [plt.Line2D([0], [0], color=color, lw=5)
+                          for color in legend_colors]
         axis.legend(legend_patches, legend_labels,
                     loc="upper right", title="Processes")
 
@@ -63,10 +66,13 @@ class Plotter():
             self.ave_waiting_time, 2)}", ha='center', va='center', transform=axis.transAxes)
 
         plt.tight_layout()
-        plt.show()
+        
+        # Is called in the main module
+        # Ensures that all figs are shown once
+        # plt.show()
 
-    def plot_round_robin(self, legend_labels: list, w=12, h=6):
-        """Specialized plotter function for round robin"""
+    def plot2(self, legend_labels: list, w=12, h=6):
+        """Specialized plotter function to plot horizontally in one line"""
 
         # Extract values from round robin tuples: ("P1", 3)
         data_names = [p[0] for p in self.sorted_processes]
@@ -84,8 +90,7 @@ class Plotter():
 
         # Create plot and bars
         _, axis = plt.subplots(figsize=(w, h))
-        bars = axis.barh(0, data_times, left=cumulative_sum,
-                         color=colors, edgecolor='black')
+        bars = axis.barh(0, data_times, left=cumulative_sum, color=colors, edgecolor='black')
         axis.bar_label(bars, labels=data_names, label_type="center")
         axis.get_yaxis().set_visible(False)
         axis.set_xlabel('Time')

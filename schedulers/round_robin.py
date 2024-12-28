@@ -7,7 +7,7 @@ import re
 
 
 class RoundRobin(Scheduler):
-    def __init__(self, quantum = None):
+    def __init__(self, quantum=None):
         super().__init__()
         self.quantum = quantum
 
@@ -38,7 +38,8 @@ class RoundRobin(Scheduler):
                     sum_finish_time += clock
                     print(f'{process.name} finished at timestamp {clock}')
 
-            processes_to_schedule = [p for p in processes_to_schedule if p.left_exec_time > 0]
+            processes_to_schedule = [
+                p for p in processes_to_schedule if p.left_exec_time > 0]
 
         self.average_waiting_time = sum_finish_time / len(self.processes)
         print('Average waiting time:', self.average_waiting_time)
@@ -56,4 +57,4 @@ class RoundRobin(Scheduler):
                                sorted_processes=self.scheduled,
                                ave_waiting_time=self.average_waiting_time,
                                title="Round Robin")
-        self.plotter.plot_round_robin(legend_labels)
+        self.plotter.plot2(legend_labels)
