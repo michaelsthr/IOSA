@@ -107,13 +107,25 @@ if __name__ == "__main__":
 
         plt.show()
 
-    def compare_sjf():
+    def comp_sjf():
         """Function to compare Preemptive Shortest Job first and Non Preemptive shortest Job First at once"""
         
+        p_sjf_scheduler = PShortestJobFirst()
+        p_sjf_scheduler.read_input("input/sjf/input0.txt", Process)
+        p_sjf_scheduler.schedule()
+        p_sjf_scheduler.plot()
+
+        p_sjf_scheduler = NPShortestJobFirst()
+        p_sjf_scheduler.read_input("input/sjf/input0.txt", Process)
+        p_sjf_scheduler.schedule()
+        p_sjf_scheduler.plot2()
+
+        plt.show()
+
 
     while True:
         try:
-            schedulers = ["sjf", "psjf", "fcfs", "edf", "llf", "rr", "ex2", "ex3"]
+            schedulers = ["sjf", "psjf", "fcfs", "edf", "llf", "rr", "ex2", "ex3", "comp_sjf"]
             print("-" * 40)
             user_input = input(f"Choose a scheduler from {schedulers}\n"
                                f"or type 'exit' to quit:\n --> ").strip().lower()
