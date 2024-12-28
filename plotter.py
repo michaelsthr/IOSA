@@ -102,4 +102,7 @@ class Plotter():
 
         plt.grid(color='grey', linestyle='-', linewidth=0.1, axis="x")
         plt.tight_layout()
-        plt.show()
+
+        # Is called in the main module
+        # Ensures that all figs are shown once
+        # plt.show()

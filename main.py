@@ -5,7 +5,7 @@ from schedulers.earliest_deadline import EarliestDeadlineFirst
 from schedulers.round_robin import RoundRobin
 from process import Process, RoundRobin_Process
 
-from threading import Thread
+import matplotlib.pyplot as plt
 from colorama import Fore
 from art import tprint
 
@@ -67,6 +67,8 @@ if __name__ == "__main__":
             print("-" * 40)
             permutation.schedule()
             permutation.plot()
+
+        plt.show()
 
     while True:
         try:
