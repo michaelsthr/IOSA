@@ -17,7 +17,7 @@ if __name__ == "__main__":
     print("-" * 40)
 
     # TODO: Multiple windows at once
-    # Kleine Blöcke in Round Robin anstatt eines großen Blockes 
+    # Kleine Blöcke in Round Robin anstatt eines großen Blockes
     # (Einfach in Einser Stellen aufteilen >> siehe Folien)
 
     def llf():
@@ -31,6 +31,7 @@ if __name__ == "__main__":
         edf.plot()
 
     def sjf():
+        """ Non preemptive shortest job first"""
         sjf = NPShortestJobFirst()
         sjf.read_input("input/sjf/input0.txt", Process)
         sjf.schedule()
@@ -54,13 +55,28 @@ if __name__ == "__main__":
         rr.schedule()
         rr.plot()
 
+    def sjf2():
+        sjf_scheduler_list = []
+
+        for i in range(5):
+            sjf_scheduler = PShortestJobFirst()
+            sjf_scheduler.read_input(f"input/sjf/input{i}.txt", Process)
+            sjf_scheduler_list.append(sjf_scheduler)
+
+        for permutation in sjf_scheduler_list:
+            print("-" * 40)
+            permutation.schedule()
+            permutation.plot()
+
+        plt.show()
+
     def rr2():
-        # TODO: Display all at once ...
         rr_scheduler_list = []
 
         for i in range(5):
             rr_scheduler = RoundRobin(3)
-            rr_scheduler.read_input(f"input/rr/input{i}.txt", RoundRobin_Process)
+            rr_scheduler.read_input(
+                f"input/rr/input{i}.txt", RoundRobin_Process)
             rr_scheduler_list.append(rr_scheduler)
 
         for permutation in rr_scheduler_list:
@@ -72,7 +88,8 @@ if __name__ == "__main__":
 
     while True:
         try:
-            schedulers = ["sjf", "psjf", "fcfs", "edf", "llf", "rr", "rr2"]
+            schedulers = ["sjf", "psjf", "fcfs",
+                          "edf", "llf", "rr", "rr2", "sjf2"]
             print("-" * 40)
             user_input = input(f"Choose a scheduler from {schedulers}\n"
                                f"or type 'exit' to quit:\n --> ").strip().lower()
