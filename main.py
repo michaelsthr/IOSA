@@ -64,8 +64,7 @@ if __name__ == "__main__":
         rr.plot()
         plt.show()
 
-
-    # Specific permutation example for the project
+    # Specific permutation examples for the project
 
     def ex2():
         """Permutation Example for exercice 2"""
@@ -86,10 +85,18 @@ if __name__ == "__main__":
 
     def ex3():
         """Permutation Example for exercice 3"""
+        user_input = input(f"Type 'P' for a Preemptive SJF and 'NP' for a NON Preemptive SJF:\n --> ")
+        if user_input == "P":
+            sjf_scheduler_class = PShortestJobFirst
+        elif user_input == "NP":
+            sjf_scheduler_class = NPShortestJobFirst
+        else:
+            raise Exception("Wrong user input")
+        
         sjf_scheduler_list = []
 
         for i in range(5):
-            sjf_scheduler = PShortestJobFirst()
+            sjf_scheduler = sjf_scheduler_class()
             sjf_scheduler.read_input(f"input/sjf/input{i}.txt", Process)
             sjf_scheduler_list.append(sjf_scheduler)
 
@@ -100,10 +107,13 @@ if __name__ == "__main__":
 
         plt.show()
 
+    def compare_sjf():
+        """Function to compare Preemptive Shortest Job first and Non Preemptive shortest Job First at once"""
+        
+
     while True:
         try:
-            schedulers = ["sjf", "psjf", "fcfs",
-                          "edf", "llf", "rr", "ex2", "ex3"]
+            schedulers = ["sjf", "psjf", "fcfs", "edf", "llf", "rr", "ex2", "ex3"]
             print("-" * 40)
             user_input = input(f"Choose a scheduler from {schedulers}\n"
                                f"or type 'exit' to quit:\n --> ").strip().lower()
