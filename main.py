@@ -72,8 +72,7 @@ if __name__ == "__main__":
 
         for i in range(5):
             rr_scheduler = RoundRobin(3)
-            rr_scheduler.read_input(
-                f"input/rr/input{i}.txt", RoundRobin_Process)
+            rr_scheduler.read_input(f"input/rr/input{i}.txt", RoundRobin_Process)
             rr_scheduler_list.append(rr_scheduler)
 
         for permutation in rr_scheduler_list:
@@ -92,7 +91,7 @@ if __name__ == "__main__":
             sjf_scheduler_class = NPShortestJobFirst
         else:
             raise Exception("Wrong user input")
-        
+
         sjf_scheduler_list = []
 
         for i in range(5):
@@ -109,7 +108,7 @@ if __name__ == "__main__":
 
     def comp_sjf():
         """Function to compare Preemptive Shortest Job first and Non Preemptive shortest Job First at once"""
-        
+
         p_sjf_scheduler = PShortestJobFirst()
         p_sjf_scheduler.read_input("input/sjf/input0.txt", Process)
         p_sjf_scheduler.schedule()
@@ -122,13 +121,14 @@ if __name__ == "__main__":
 
         plt.show()
 
-
     while True:
         try:
             schedulers = ["sjf", "psjf", "fcfs", "edf", "llf", "rr", "ex2", "ex3", "comp_sjf"]
             print("-" * 40)
-            user_input = input(f"Choose a scheduler from {schedulers}\n"
-                               f"or type 'exit' to quit:\n --> ").strip().lower()
+            user_input = (
+                input(f"Choose a scheduler from {schedulers}\n" 
+                      f"or type 'exit' to quit:\n --> ").strip().lower()
+            )
             if user_input in schedulers:
                 print("-" * 40)
                 exec(f"{user_input}()")
@@ -137,5 +137,7 @@ if __name__ == "__main__":
             else:
                 print("Invalid scheduler!")
         except Exception as ex:
-            print(f"{Fore.YELLOW} An unexpected error occured: {ex}\n"
-                  f"But you can try other schedulers :){Fore.RESET}\n")
+            print(
+                f"{Fore.YELLOW} An unexpected error occured: {ex}\n"
+                f"But you can try other schedulers :){Fore.RESET}\n"
+            )

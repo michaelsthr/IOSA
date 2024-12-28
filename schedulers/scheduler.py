@@ -1,6 +1,7 @@
 from process import Process
 import re
 
+
 class Scheduler:
     def __init__(self):
         self.processes = []
@@ -39,7 +40,7 @@ class Scheduler:
 
             if not matches:
                 raise ValueError(f"Input '{input_path}' has invalid format")
-            
+
             kwargs = {key: int(value) if value.isdigit() else value for key, value in matches}
             self.processes.append(process_class(**kwargs))
 
