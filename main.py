@@ -3,7 +3,7 @@ from schedulers.least_laxity import LeastLaxityFirst
 from schedulers.first_come_first_serve import FirstComeFirstServe
 from schedulers.earliest_deadline import EarliestDeadlineFirst
 from schedulers.round_robin import RoundRobin
-from process import Process, RoundRobin_Process
+from process import Process, RoundRobin_Process, LLF_Process
 
 import matplotlib.pyplot as plt
 from colorama import Fore
@@ -19,6 +19,12 @@ if __name__ == "__main__":
     def llf():
         """Least Laxity First"""
         llf = LeastLaxityFirst()
+        processes = [
+            LLF_Process(name="p1", ready_time=0, deadline=10, exec_time=8),
+            LLF_Process(name="p2", ready_time=0, deadline=9, exec_time=5),
+            LLF_Process(name="p3", ready_time=0, deadline=9, exec_time=4),
+        ]
+        llf.read_processes(processes)
         llf.schedule()
         llf.plot()
         plt.show()
@@ -148,4 +154,4 @@ if __name__ == "__main__":
             else:
                 print("Invalid scheduler!")
         except Exception as ex:
-            print(f"{Fore.YELLOW} An unexpected error occured: {ex}\n" f"But you can try other schedulers :){Fore.RESET}\n")
+            print(f"{Fore.YELLOW}An unexpected error occured: {ex}\n" f"But you can try other schedulers :){Fore.RESET}\n")

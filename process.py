@@ -14,11 +14,8 @@ class Process:
         return "".join(f"{key}: {value}\n" for key, value in vars(self).items() if value is not None)
 
 class LLF_Process(Process):
-    def __init__(self, ready_time, exec_time, deadline, name=None):
-        self.name = name
-        self.ready_time = ready_time
-        self.exec_time = exec_time
-        self.deadline = deadline
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.calc_laxity()
 
     def calc_laxity(self):
