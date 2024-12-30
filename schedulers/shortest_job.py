@@ -7,20 +7,20 @@ from colorama import Fore
 
 class NPShortestJobFirst(Scheduler):
     """
-    Non Preemptive shortest job first.
-    >Can not< break process to schedule another process
+    Non-preemptive shortest job first.
+    >Can not< break process to schedule another process.
     """
 
     def __init__(self):
         super().__init__()
 
     def schedule(self):
+        '''
+        Perform the non-preemptive Shortest Job First scheduling.
+        '''
         print(f"{Fore.CYAN}Shortest Job First:\n{Fore.RESET}")
 
         self.scheduled = sorted(self.processes, key=lambda p: p.exec_time)
-
-        for l in self.scheduled:
-            print(l)
 
         # calculate the combined relativ waiting time for each process
         self.ave_waiting_time = 0
@@ -78,6 +78,9 @@ class PShortestJobFirst(Scheduler):
         super().__init__()
 
     def schedule(self):
+        '''
+        Perform the preemptive Shortest Job First scheduling.
+        '''
         print(f"{Fore.CYAN}Preemptive Shortest Job First:\n{Fore.RESET}")
 
         processes_to_schedule = sorted(self.processes, key=lambda p: (p.ready_time, p.exec_time)).copy()

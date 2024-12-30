@@ -10,13 +10,17 @@ class EarliestDeadlineFirst(Scheduler):
         super().__init__()
 
     def schedule(self) -> float:
+        '''
+        Perform the Earliest Deadline First scheduler.
+        '''
         print(f"{Fore.CYAN}Earliest Deadline First:\n{Fore.RESET}")
+
+        print("Processes with deadlines:")
+        for p in self.processes:
+            print(p)
 
         # sorted list only by deadlines, not by execution times
         self.scheduled = sorted(self.processes, key=lambda process: process.deadline)
-
-        for idx in range(len(self.scheduled)):
-            print("  Execution time process", (idx + 1), ":", self.processes[idx].exec_time)
 
         self.ave_waiting_time = 0
         added_waiting_time = 0

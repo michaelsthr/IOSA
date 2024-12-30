@@ -10,25 +10,9 @@ class FirstComeFirstServe(Scheduler):
         super().__init__()
 
     def schedule(self) -> float:
-        # The output will be like this:
-
-        # First Come First Serve:
-
-        # Processes:
-        # Execution-Times:
-        # Execution time process 1 : 22
-        # Execution time process 2 : 2
-        # Execution time process 3 : 3
-        # Execution time process 4 : 5
-        # Execution time process 5 : 8
-        # + 22
-        # + 24
-        # + 27
-        # + 32
-        # + 40
-        # 145  /  5
-        # Average waiting time: 29.0
-
+        '''
+        Perform the First Come First Serve scheduler.
+        '''
         print(f"{Fore.CYAN}First Come First Serve:\n{Fore.RESET}")
         print("Processes:\nExecution-Times:")
 

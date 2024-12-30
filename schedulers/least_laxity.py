@@ -10,18 +10,9 @@ class LeastLaxityFirst(Scheduler):
         super().__init__()
 
     def schedule(self) -> float:
-        # The output will be like this:
-
-        # Least Laxity First:
-
-        # Processes:
-        # + 22
-        # + 24
-        # + 27
-        # + 32
-        # + 40
-        # 145  /  5
-        # Average waiting time: 29.0
+        '''
+        Perform the Least Laxity First scheduling.
+        '''
 
         self.scheduled = sorted(self.processes, key=lambda x: x.laxity, reverse=False)
         print(f"{Fore.CYAN}Least Laxity First:\n{Fore.RESET}")

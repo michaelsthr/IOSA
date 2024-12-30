@@ -14,7 +14,7 @@ class RoundRobin(Scheduler):
 
     def schedule(self) -> float:
         """
-        Perform Round Robin scheduling.
+        Perform the Round Robin scheduling.
         """
         print(f"{Fore.CYAN}Round Robin:\n{Fore.RESET}")
 
