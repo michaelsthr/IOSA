@@ -100,7 +100,8 @@ if __name__ == "__main__":
             permutation.schedule()
             permutation.plot()
 
-        plt.show()
+        # Would be to much plots at once --> Try comp_sjf()
+        # plt.show()
 
     def ex3():
         """Permutation Example for exercice 3"""
@@ -124,7 +125,8 @@ if __name__ == "__main__":
             permutation.schedule()
             permutation.plot()
 
-        plt.show()
+        # Would be to much plots at once --> Try comp_sjf()
+        # plt.show()
 
     def comp_sjf():
         """Function to compare Preemptive Shortest Job first and Non Preemptive shortest Job First at once"""

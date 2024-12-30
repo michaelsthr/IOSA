@@ -61,7 +61,7 @@ class NPShortestJobFirst(Scheduler):
             processes=self.processes,
             sorted_processes=self.scheduled,
             ave_waiting_time=self.average_waiting_time,
-            title="Preemptive Shortest Job First",
+            title="Non Preemptive Shortest Job First",
         )
         self.plotter.plot2(legend_labels)
 
