@@ -10,7 +10,6 @@ You can find it at [IOSA GitHub Repository](https://github.com/michaelsthr/IOSA)
 - SJF non-preemptive: Shortest Job First selects the process with the smallest execution time. 
     - It minimizes average waiting time but requires precise knowledge of execution times.
 - SJF preemptive: Similar to the non-preemptive approach, but with the difference, that the running process gets interrupted, when a new process is ready. Now the new shortest-job gets selected again.
-    - In the case, that not all processes are ready from the start, the average waiting time is smaller than with the non-preemptive approach
 - EDF: Earliest Deadline First prioritizes processes with the closest deadlines.
     - It is optimal for real-time systems but can be complex to implement.
 - LLF: Least Laxity First schedules processes based on their laxity, which is the difference between their deadline and remaining execution time.
