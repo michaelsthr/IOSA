@@ -1,6 +1,9 @@
 # IOSA - Implementation Of Scheduling Algorithms
 ### Developers: Michael Stöhr, Samuel Käufler, Matthias Steger
 
+This project is publicly hosted on GitHub to improve collaboration among Michael Stöhr, Samuel Käufler, Matthias Steger.
+You can find it at [IOSA GitHub Repository](https://github.com/michaelsthr/IOSA).
+
 ### Implementations of following algorithms:
 - FCFS: First-Come-First-Serve schedules processes in the order they arrive in the ready queue. 
     - It is simple but can lead to the convoy effect.
@@ -14,12 +17,6 @@
     - It aims to prevent deadline misses.
 - Round Robin with Quantum Q: Round Robin assigns a fixed time quantum to each process in a cyclic order. 
     - It ensures fairness but can lead to high context-switching overhead.
- 
-
-
-### Working
-- All schedulers are working and can be plotted
-- SJF and RR use input.txt files to read the processes
 
 ### Installation
 To install Python, download and install it from [python.org](https://www.python.org/).
@@ -34,3 +31,4 @@ To start the program, run the following command in a terminal:
 ```sh 
 python3 main.py
 ```
+Now you can type your desired scheduler or example and see the output
