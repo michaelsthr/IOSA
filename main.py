@@ -99,6 +99,7 @@ if __name__ == "__main__":
 
         for permutation in rr_scheduler_list:
             print("-" * 40)
+            print(permutation.input_path)
             permutation.schedule()
             permutation.plot()
 
@@ -118,12 +119,14 @@ if __name__ == "__main__":
         sjf_scheduler_list = []
 
         for i in range(5):
+            input_file = f"input/sjf/input{i}.txt"
             sjf_scheduler = sjf_scheduler_class()
-            sjf_scheduler.read_input(f"input/sjf/input{i}.txt", Process)
+            sjf_scheduler.read_input(input_file, Process)
             sjf_scheduler_list.append(sjf_scheduler)
 
         for permutation in sjf_scheduler_list:
             print("-" * 40)
+            print(permutation.input_path)
             permutation.schedule()
             permutation.plot()
 
