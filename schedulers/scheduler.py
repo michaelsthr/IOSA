@@ -34,6 +34,7 @@ class Scheduler:
         Expected format for each line in the input file:
             name=<process_name>, exec_time=<execution_time>, [optional parameters]
         """
+        self.input_path = input_path
         self.processes = []
         with open(input_path) as f:
             data = f.readlines()
