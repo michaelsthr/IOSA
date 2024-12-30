@@ -26,6 +26,12 @@ if __name__ == "__main__":
     def edf():
         """Earliest Deadline First"""
         edf = EarliestDeadlineFirst()
+        processes = [
+            Process(name="p1", deadline=9, exec_time=4),
+            Process(name="p2", deadline=9, exec_time=5),
+            Process(name="p3", deadline=10, exec_time=8),
+        ]
+        edf.read_processes(processes)
         edf.schedule()
         edf.plot()
         plt.show()
