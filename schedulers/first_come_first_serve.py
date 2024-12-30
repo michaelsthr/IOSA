@@ -1,7 +1,8 @@
+# Developers: Michael Stöhr, Samuel Käufler, Matthias Steger
+
 from process import FCFS_Process
 from plotter import Plotter
 from colorama import Fore
-
 
 class FirstComeFirstServe:
     def __init__(self):

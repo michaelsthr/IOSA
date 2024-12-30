@@ -1,10 +1,10 @@
+# Developers: Michael Stöhr, Samuel Käufler, Matthias Steger
+
 from schedulers.scheduler import Scheduler
 from process import RoundRobin_Process
 from plotter import Plotter
-
 from colorama import Fore
 import re
-
 
 class RoundRobin(Scheduler):
     def __init__(self, quantum=None):

@@ -1,9 +1,10 @@
+# Developers: Michael Stöhr, Samuel Käufler, Matthias Steger
+
 from abc import ABC, abstractmethod
 import matplotlib.pyplot as plt
 import random
 import numpy as np
 from matplotlib import cm
-
 
 class Plotter:
     # TODO: Enable more options for the legend

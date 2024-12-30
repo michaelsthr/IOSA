@@ -1,3 +1,5 @@
+# Developers: Michael Stöhr, Samuel Käufler, Matthias Steger
+
 from schedulers.shortest_job import NPShortestJobFirst, PShortestJobFirst
 from schedulers.least_laxity import LeastLaxityFirst
 from schedulers.first_come_first_serve import FirstComeFirstServe
