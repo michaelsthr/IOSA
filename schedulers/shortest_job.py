@@ -23,7 +23,7 @@ class NPShortestJobFirst(Scheduler):
             print(l)
 
         # calculate the combined relativ waiting time for each process
-        self.ave_waiting_time = 0
+        self.average_waiting_time = 0
         added_waiting_time = 0
         rel_waiting_time = 0
         for i in self.scheduled:
@@ -33,17 +33,17 @@ class NPShortestJobFirst(Scheduler):
 
         # calculate and print the average waiting time
         print(added_waiting_time, " / ", len(self.scheduled))
-        self.ave_waiting_time = added_waiting_time / len(self.scheduled)
-        print("Average waiting time:", self.ave_waiting_time)
+        self.average_waiting_time = added_waiting_time / len(self.scheduled)
+        print("Average waiting time:", self.average_waiting_time)
 
-        return self.ave_waiting_time, self.scheduled
+        return self.average_waiting_time, self.scheduled
 
     def plot(self):
         legend_labels = [f"{p.name}, exec_time={p.exec_time}" for p in self.processes]
         self.plotter = Plotter(
             processes=self.processes,
             sorted_processes=self.scheduled,
-            ave_waiting_time=self.ave_waiting_time,
+            ave_waiting_time=self.average_waiting_time,
             title="Non Preemptive Shortest Job First",
         )
 
