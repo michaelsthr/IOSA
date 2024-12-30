@@ -13,6 +13,7 @@ class Process:
         """Returns a string of the object's attributes with non-None values."""
         return "".join(f"{key}: {value}\n" for key, value in vars(self).items() if value is not None)
 
+
 class LLF_Process(Process):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

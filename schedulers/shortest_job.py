@@ -93,9 +93,7 @@ class PShortestJobFirst(Scheduler):
             current_process = ready_processes[0]
 
             # I got some random error without `default=float('inf')`. Dont ask me what this is
-            next_ready_time = min(
-                [p.ready_time for p in processes_to_schedule if p.ready_time > clock], default=float("inf")
-            )
+            next_ready_time = min([p.ready_time for p in processes_to_schedule if p.ready_time > clock], default=float("inf"))
             time_slice = min(current_process.left_exec_time, next_ready_time - clock)
 
             current_process.left_exec_time -= time_slice
