@@ -1,4 +1,5 @@
 # IOSA - Implementation Of Scheduling Algorithms
+## Developers: Michael Stöhr, Samuel Käufler, Matthias Steger
 
 ### TODO:
 - 3. Aufgabe (non-preemptive and preemptive)
