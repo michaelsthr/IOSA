@@ -1,7 +1,8 @@
+# Developers: Michael Stöhr, Samuel Käufler, Matthias Steger
+
 from process import LLF_Process
 from plotter import Plotter
 from colorama import Fore
-
 
 class LeastLaxityFirst:
     def __init__(self):

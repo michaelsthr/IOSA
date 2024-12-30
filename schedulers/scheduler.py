@@ -1,6 +1,7 @@
+# Developers: Michael Stöhr, Samuel Käufler, Matthias Steger
+
 from process import Process
 import re
-
 
 class Scheduler:
     def __init__(self):
