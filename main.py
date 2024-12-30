@@ -56,6 +56,14 @@ if __name__ == "__main__":
     def fcfs():
         """First Come First Serve"""
         fcfs = FirstComeFirstServe()
+        processes = [
+            Process(name="p1", exec_time=22),
+            Process(name="p2", exec_time=2),
+            Process(name="p3", exec_time=3),
+            Process(name="p4", exec_time=5),
+            Process(name="p5", exec_time=8),
+        ]
+        fcfs.read_processes(processes)
         fcfs.schedule()
 
         fcfs.plot()
@@ -131,10 +139,7 @@ if __name__ == "__main__":
         try:
             schedulers = ["sjf", "psjf", "fcfs", "edf", "llf", "rr", "ex2", "ex3", "comp_sjf"]
             print("-" * 40)
-            user_input = (
-                input(f"Choose a scheduler from {schedulers}\n" 
-                      f"or type 'exit' to quit:\n --> ").strip().lower()
-            )
+            user_input = input(f"Choose a scheduler from {schedulers}\n" f"or type 'exit' to quit:\n --> ").strip().lower()
             if user_input in schedulers:
                 print("-" * 40)
                 exec(f"{user_input}()")
@@ -143,7 +148,4 @@ if __name__ == "__main__":
             else:
                 print("Invalid scheduler!")
         except Exception as ex:
-            print(
-                f"{Fore.YELLOW} An unexpected error occured: {ex}\n"
-                f"But you can try other schedulers :){Fore.RESET}\n"
-            )
+            print(f"{Fore.YELLOW} An unexpected error occured: {ex}\n" f"But you can try other schedulers :){Fore.RESET}\n")

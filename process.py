@@ -13,10 +13,6 @@ class Process:
         """Returns a string of the object's attributes with non-None values."""
         return "".join(f"{key}: {value}\n" for key, value in vars(self).items() if value is not None)
 
-
-class FCFS_Process(Process):
-    pass
-
 class LLF_Process(Process):
     def __init__(self, ready_time, exec_time, deadline, name=None):
         self.name = name
