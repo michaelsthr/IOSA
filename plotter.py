@@ -6,6 +6,7 @@ import random
 import numpy as np
 from matplotlib import cm
 
+
 class Plotter:
     # TODO: Enable more options for the legend
     def __init__(self, processes: list, sorted_processes: list, ave_waiting_time=0, title="Scheduler-Plotter"):

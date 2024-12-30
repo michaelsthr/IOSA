@@ -1,5 +1,6 @@
 # Developers: Michael Stöhr, Samuel Käufler, Matthias Steger
 
+
 class Process:
     def __init__(self, **kwargs):
         self.name = kwargs.get("name")

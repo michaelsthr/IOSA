@@ -4,6 +4,7 @@ from plotter import Plotter
 from colorama import Fore
 from schedulers.scheduler import Scheduler
 
+
 class LeastLaxityFirst(Scheduler):
     def __init__(self):
         super().__init__()

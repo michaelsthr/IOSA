@@ -4,6 +4,7 @@ from plotter import Plotter
 from schedulers.scheduler import Scheduler
 from colorama import Fore
 
+
 class NPShortestJobFirst(Scheduler):
     """
     Non Preemptive shortest job first.
